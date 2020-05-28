@@ -11,6 +11,7 @@ public abstract class BasePage {
         PageFactory.initElements(Driver.get(),this);
     }
 
+
     @FindBy(id = "logo_24_a")
     public WebElement homePage;
 
