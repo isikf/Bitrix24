@@ -1,9 +1,7 @@
 package com.nextbasecrm.pages;
 
-import com.nextbasecrm.utilities.BrowserUtils;
 import com.nextbasecrm.utilities.Driver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
