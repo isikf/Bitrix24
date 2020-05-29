@@ -20,4 +20,7 @@ public abstract class BasePage {
 
     @FindBy(linkText = "/auth/?logout=yes&backurl=%2Fstream%2F")
     public WebElement logOut;
+
+    @FindBy(id = "search-textbox-input")
+    public WebElement searchInput;
 }
