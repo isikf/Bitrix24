@@ -21,6 +21,12 @@ public class LoginPage{
     @FindBy(xpath = "//input[@type='submit']")
     public WebElement loginButton;
 
+    @FindBy(id="USER_REMEMBER")
+    public WebElement rememberMeBox;
+
+    @FindBy(tagName = "Forgot your password?")
+    public WebElement forgotPasswordLink;
+
     public void login(String userNameStr, String passwordStr){
         userNameInput.sendKeys(userNameStr);
         passwordInput.sendKeys(passwordStr);
