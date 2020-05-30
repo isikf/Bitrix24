@@ -79,12 +79,6 @@ public class UserStory10 extends TestBase {
         Assert.assertEquals(unfollow.getText(),"Follow");
 
 
-
-
-
-
-
-
     }
     @Test(dataProvider = "testData")
     public void test3(String username,String password){
@@ -98,13 +92,14 @@ public class UserStory10 extends TestBase {
 
         WebElement reviewer = driver.findElement(By.cssSelector("#bpc_BLOG_179-177"));
         reviewer.click();
-
+        extentLogger.info("Click on reviewer name");
         //WebElement profileMenu = driver.findElement(By.cssSelector(".profile-menu-name"));
         //wait.until(ExpectedConditions.visibilityOf(profileMenu));
 
-
         WebElement title = driver.findElement(By.id("pagetitle"));
         Assert.assertTrue(title.isDisplayed());
+        extentLogger.info("Verify that reviewer name's profile");
+        extentLogger.pass("PASS");
 
 
     }
@@ -117,16 +112,20 @@ public class UserStory10 extends TestBase {
         extentLogger.info("login as a marketing user");
 
         WebElement starIcon = driver.findElement(By.cssSelector("#log_entry_favorites_896"));
+        extentLogger.info("Click star icon on office post");
 
         WebElement searchAndFilterButton = driver.findElement(By.id("LIVEFEED_search"));
         searchAndFilterButton.click();
 
         WebElement favoritesButton = driver.findElement(By.xpath("(//span[@class='main-ui-filter-sidebar-item-text'])[1]"));
         favoritesButton.click();
+        extentLogger.info("Go to favorites posts page");
 
         WebElement favoritedPost = driver.findElement(By.id("disk-attach-image-197"));
 
         Assert.assertTrue(favoritedPost.isDisplayed());
+        extentLogger.info("Verify that office photo post is favorited");
+        extentLogger.pass("PASS");
 
 
 
