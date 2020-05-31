@@ -13,6 +13,29 @@ import org.testng.annotations.Test;
 public class UserStory9 extends TestBase {
 
     @Test
+    public void test1(){
+        extentLogger = report.createTest("Search by clicking on default filters verification");
+        new LoginPage().loginAsHelpDesk();
+        extentLogger.info("Login as a Help Desk");
+        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
+        activityStreamPage.navigateToAnnouncement();
+        extentLogger.info("Navigate to announcement");
+        Driver.get().switchTo().frame(0);
+        activityStreamPage.textInput.sendKeys("test Filter and Search Input");
+        extentLogger.info("Type something in textInput");
+        Driver.get().switchTo().parentFrame();
+        activityStreamPage.sendTextButton.click();
+        extentLogger.info("Send this message");
+        activityStreamPage.filterAndSearchInput.click();
+        extentLogger.info("Click filter and search input");
+        activityStreamPage.announcementsButtonInFilterAndSearchInput.click();
+        extentLogger.info("click announcements as default filter");
+        Assert.assertFalse(activityStreamPage.searchResultsAfterUsingFilterAndSearch.isEmpty());
+        extentLogger.info("Verify it can be searched by default filters");
+        extentLogger.pass("PASS");
+    }
+
+    @Test
     public void test3(){
         extentLogger = report.createTest("Search Written Message Verification");
         new LoginPage().loginAsHelpDesk();

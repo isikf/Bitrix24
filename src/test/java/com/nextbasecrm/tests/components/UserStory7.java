@@ -68,7 +68,7 @@ public class UserStory7 extends TestBase {
         activityStreamPage.navigateToAnnouncement();
         extentLogger.info("Go to announcement");
         Driver.get().switchTo().frame(0);
-        Driver.get().findElement(By.xpath("//body[@contenteditable='true']")).clear();
+        activityStreamPage.textInput.clear();
         Driver.get().switchTo().parentFrame();
      //   activityStreamPage.insertVideo(link);
         extentLogger.info("Click video icon to insert video");
