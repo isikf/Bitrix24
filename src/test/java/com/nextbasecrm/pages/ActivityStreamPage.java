@@ -1,5 +1,6 @@
 package com.nextbasecrm.pages;
 
+import com.nextbasecrm.utilities.BrowserUtils;
 import com.nextbasecrm.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -106,6 +107,19 @@ public class ActivityStreamPage extends BasePage{
         linkText.sendKeys(text);
         linkUrl.sendKeys(url);
         Driver.get().findElement(By.id("undefined")).click();
+    }
+
+
+    /**
+     * this methot navigate for activityStream page's tabs
+     * Tlh
+     */
+    public void navigateToTab(String tab){
+
+        WebElement tabElement = Driver.get().findElement(By.xpath("//div[@id='feed-add-post-form-tab']//span[contains(text(),'" + tab + "')]"));
+        BrowserUtils.waitForClickablility(tabElement,5);
+        // navigateToModule("Activity Stream");
+        tabElement.click();
     }
 
 

@@ -17,6 +17,26 @@ import java.util.List;
 
 
 public class BrowserUtils {
+
+
+    /*
+    * This method control elemnt is exist in html current page if exist,return true, if not return false
+    * @param locator
+    * tlh
+    * */
+    public static boolean doesElementExist(By locator){
+        try{
+            Driver.get().findElement(locator).getText();
+            return true;
+        }catch (NoSuchElementException e){
+//            logger.warn("Element does not exist ->" + element);
+            return false;
+        }
+    }
+
+
+
+
     /*
      * takes screenshot
      * @param name
