@@ -1,5 +1,6 @@
 package com.nextbasecrm.pages;
 
+import com.nextbasecrm.utilities.BrowserUtils;
 import com.nextbasecrm.utilities.ConfigurationReader;
 import com.nextbasecrm.utilities.Driver;
 import org.openqa.selenium.WebElement;
@@ -27,6 +28,21 @@ public class LoginPage{
     @FindBy(tagName = "Forgot your password?")
     public WebElement forgotPasswordLink;
 
+    @FindBy(name = "USER_LOGIN")
+    WebElement userName;
+
+    @FindBy(name = "USER_PASSWORD")
+    WebElement password;
+
+    @FindBy(css = ".login-btn")
+    WebElement loginButton2;
+
+    @FindBy(css =".login-link-forgot-pass")
+    WebElement forgotPasswordButton;
+
+
+
+
     public void login(String userNameStr, String passwordStr){
         userNameInput.sendKeys(userNameStr);
         passwordInput.sendKeys(passwordStr);
@@ -49,6 +65,21 @@ public class LoginPage{
         userNameInput.sendKeys(ConfigurationReader.get("hr_username"));
         passwordInput.sendKeys(ConfigurationReader.get("hr_password"));
         loginButton.click();
+    }
+
+
+    /*
+    * This method accept just user type name , then take data from conf.pro.
+    * u can type data in data provider
+    * @param user
+    * Tlh
+    * */
+    public void loginAs(String user){
+
+        userName.sendKeys(ConfigurationReader.get(user+"_username") );
+        password.sendKeys(ConfigurationReader.get(user+"_password"));
+        loginButton2.click();
+        BrowserUtils.waitFor(2);
     }
 
 }
