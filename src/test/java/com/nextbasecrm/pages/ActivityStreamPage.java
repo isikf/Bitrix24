@@ -61,6 +61,18 @@ public class ActivityStreamPage extends BasePage{
     @FindBy(xpath = "(//span[@class='main-ui-filter-sidebar-item-text'])[1]")
     public WebElement favoriteButton;
 
+    @FindBy(xpath = "//div[@id='feed-add-post-form-tab']//span[.='Poll']")
+    public WebElement PollButton;
+
+    @FindBy(id = "feed-add-post-destination-container")
+    public WebElement addMoreButton;
+
+    @FindBy(css = ".bx-finder-box-tab.bx-lm-tab-last.bx-finder-box-tab-selected")
+    public WebElement recentOption;
+
+    @FindBy(css = ".bx-finder-box-tab.bx-lm-tab-department")
+    public WebElement employeeAndDepartment;
+
     public void navigateToAnnouncement(){
         moreButton.click();
         announcementButton.click();

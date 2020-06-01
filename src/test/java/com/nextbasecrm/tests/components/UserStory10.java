@@ -102,8 +102,9 @@ public class UserStory10 extends TestBase {
         new LoginPage().login(username,password);
         extentLogger.info("login as a marketing user");
 
-        WebElement pageTitle = driver.findElement(By.id("pagetitle"));
-        wait.until(ExpectedConditions.visibilityOf(pageTitle));
+        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
+        //WebElement pageTitle = driver.findElement(By.id("pagetitle"));
+        wait.until(ExpectedConditions.visibilityOf(activityStreamPage.activityStreamPageTitle));
 
         WebElement reviewer = driver.findElement(By.xpath("//a[starts-with(@class,'feed-com-name  feed-author-name feed-author-name-')]"));
         reviewer.click();

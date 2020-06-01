@@ -1,5 +1,6 @@
 package com.nextbasecrm.tests.components;
 
+import com.nextbasecrm.pages.ActivityStreamPage;
 import com.nextbasecrm.pages.LoginPage;
 import com.nextbasecrm.tests.TestBase;
 import com.nextbasecrm.utilities.BrowserUtils;
@@ -43,22 +44,22 @@ public class UserStory4 extends TestBase {
         new LoginPage().loginAsHelpDesk();
         extentLogger.info("Login as a help desk");
 
-        WebElement PollButton = driver.findElement(By.xpath("//div[@id='feed-add-post-form-tab']//span[.='Poll']"));
-        PollButton.click();
+        ActivityStreamPage activityStreamPage =new ActivityStreamPage();
+        activityStreamPage.PollButton.click();
         extentLogger.info("Click on poll button");
 
-        WebElement addUsersButton = driver.findElement(By.id("feed-add-post-destination-container"));
-        addUsersButton.click();
+        activityStreamPage.addMoreButton.click();
+        extentLogger.info("Click on add more input box");
 
-        WebElement recentOption = driver.findElement(By.cssSelector(".bx-finder-box-tab.bx-lm-tab-last.bx-finder-box-tab-selected"));
-        recentOption.click();
+        activityStreamPage.recentOption.click();
+        extentLogger.info("Click on recent option");
+
         WebElement recentEmployee = driver.findElement(By.xpath("(//div[@class='bx-finder-box-item-t7-name'])[1]"));
         recentEmployee.click();
 
-        //Assert.assertEquals(listOfEmployees.get(listOfEmployees.size()).getText(),recentEmployee.getText());
+        activityStreamPage.employeeAndDepartment.click();
+        extentLogger.info("Click on employee and department option");
 
-        WebElement employeeAndDepartmentsOption = driver.findElement(By.cssSelector(".bx-finder-box-tab.bx-lm-tab-department"));
-        employeeAndDepartmentsOption.click();
         WebElement firstEmployee = driver.findElement(By.cssSelector(".bx-finder-company-department-employee-name"));
         String expectedEmployeeName=firstEmployee.getText();
         firstEmployee.click();
