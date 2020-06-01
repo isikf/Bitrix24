@@ -51,6 +51,42 @@ public class ActivityStreamPage extends BasePage{
     @FindBy(id = "blog-submit-button-save")
     public WebElement sendTextButton;
 
+
+    @FindBy(id="pagetitle")
+    public WebElement activityStreamPageTitle;
+
+    @FindBy(id="LIVEFEED_search")
+    public WebElement searchAndFilterButton;
+
+    @FindBy(xpath = "(//span[@class='main-ui-filter-sidebar-item-text'])[1]")
+    public WebElement favoriteButton;
+
+    @FindBy(xpath = "//div[@id='feed-add-post-form-tab']//span[.='Poll']")
+    public WebElement PollButton;
+
+    @FindBy(id = "feed-add-post-destination-container")
+    public WebElement addMoreButton;
+
+    @FindBy(css = ".bx-finder-box-tab.bx-lm-tab-last.bx-finder-box-tab-selected")
+    public WebElement recentOption;
+
+    @FindBy(css = ".bx-finder-box-tab.bx-lm-tab-department")
+    public WebElement employeeAndDepartment;
+
+    @FindBy(css = ".bx-ilike-text")
+    public WebElement firstPostLikeButton;
+
+    @FindBy(css = ".feed-inform-comments")
+    public WebElement firstPostCommentButton;
+    @FindBy(css = ".feed-inform-follow")
+    public WebElement firstPostUnfollowButton;
+
+    @FindBy(xpath = "//body[@style='min-height: 84px;']")
+    public WebElement firstPostCommentInputBox;
+
+    @FindBy(css = ".ui-btn.ui-btn-sm.ui-btn-primary")
+    public WebElement sendCommentButton;
+
     @FindBy(xpath = "//input[contains(@id,'LIVEFEED')]")
     public WebElement filterAndSearchInput;
 
@@ -96,6 +132,7 @@ public class ActivityStreamPage extends BasePage{
 
     @FindBy(xpath = "//*[@class='main-ui-filter-sidebar-item'][5]")
     public WebElement workflowsButtonInFilterAndSearchInput;
+
 
     public void navigateToAnnouncement(){
         moreButton.click();
