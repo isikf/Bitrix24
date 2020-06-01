@@ -53,10 +53,32 @@ public class ActivityStreamPage extends BasePage{
     @FindBy(xpath = "//input[contains(@id,'LIVEFEED')]")
     public WebElement filterAndSearchInput;
 
-    @FindBy(xpath = "//div[contains(@class,'feed-post-cont-wrap')]")
-    public List<WebElement> searchResultsAfterUsingFilterAndSearch;
+    @FindBy(id = "LIVEFEED_search_container")
+    public WebElement filterAndSearchInputContainer;
 
-    @FindBy(className = "main-ui-item-icon main-ui-search")
+
+    @FindBy(className = "main-ui-filter-add-item")
+    public WebElement saveFilterButtonAfterFilterAndSearch;
+
+    @FindBy(className = "main-ui-filter-sidebar-edit-control")
+    public WebElement filterNameInputAfterSaveFilterButton;
+
+    @FindBy(xpath = "//*[@class='main-ui-control main-ui-select']")
+    public List<WebElement> dateDropdownInFilterAndSearch;
+
+    @FindBy(xpath = "//*[@class='main-ui-control main-ui-multi-select']")
+    public List<WebElement> typeDropdownInFilterAndSearch;
+
+    @FindBy(xpath = "//*[contains(@class,'main-ui-filter-save')]")
+    public WebElement saveButtonAfterSaveFilter;
+
+    @FindBy(xpath = "//*[contains(@class,'main-ui-filter-find')]")
+    public WebElement searchButtonInFilterAndSearch;
+
+    @FindBy(xpath = "//div[contains(@class,'feed-post-cont-wrap')]")
+    public List<WebElement> resultsAfterUsingFilterAndSearch;
+
+    @FindBy(xpath = "//*[@class='main-ui-item-icon main-ui-search']")
     public WebElement findIconInFilterAndSearchInput;
 
     @FindBy(xpath = "//*[@class='main-ui-filter-sidebar-item'][1]")
