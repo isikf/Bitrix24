@@ -52,6 +52,15 @@ public class ActivityStreamPage extends BasePage{
     @FindBy(id = "blog-submit-button-save")
     public WebElement sendTextButton;
 
+    @FindBy(id="pagetitle")
+    public WebElement activityStreamPageTitle;
+
+    @FindBy(id="LIVEFEED_search")
+    public WebElement searchAndFilterButton;
+
+    @FindBy(xpath = "(//span[@class='main-ui-filter-sidebar-item-text'])[1]")
+    public WebElement favoriteButton;
+
     public void navigateToAnnouncement(){
         moreButton.click();
         announcementButton.click();
