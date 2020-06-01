@@ -31,7 +31,7 @@ public class UserStory10 extends TestBase {
     }
 
     @Test(dataProvider = "testData")
-    public void test1(String username,String password){
+    public void AC1(String username,String password){
         extentLogger=report.createTest("User Story 10 AC:1");
         new LoginPage().login(username,password);
         extentLogger.info("login as a marketing user");
@@ -96,7 +96,7 @@ public class UserStory10 extends TestBase {
 
     }
     @Test(dataProvider = "testData")
-    public void test3(String username,String password){
+    public void AC3(String username,String password){
 
         extentLogger=report.createTest("User Story 10 AC:1");
         new LoginPage().login(username,password);
@@ -120,7 +120,7 @@ public class UserStory10 extends TestBase {
     }
 
     @Test(dataProvider = "testData")
-    public void test4(String username,String password){
+    public void AC4(String username,String password){
 
         extentLogger=report.createTest("User Story 10 AC:1");
         new LoginPage().login(username,password);
