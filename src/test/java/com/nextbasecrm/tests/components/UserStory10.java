@@ -32,46 +32,42 @@ public class UserStory10 extends TestBase {
 
     @Test(dataProvider = "testData")
     public void AC1(String username,String password){
+
         extentLogger=report.createTest("User Story 10 AC:1");
+
         new LoginPage().login(username,password);
         extentLogger.info("login as a marketing user");
 
         ActivityStreamPage activityStreamPage = new ActivityStreamPage();
         wait.until(ExpectedConditions.visibilityOf(activityStreamPage.activityStreamPageTitle));
 
-        //WebElement likeButton = driver.findElement(By.xpath("//span[starts-with(@id,'bx-ilike-button-BLOG_POST_179-')]"));
-        WebElement likeButton = driver.findElement(By.cssSelector(".bx-ilike-text"));
-        likeButton.click();
+        activityStreamPage.firstPostLikeButton.click();
         extentLogger.info("Click on first post's like button");
         String likedUsers = driver.findElement(By.cssSelector(".feed-post-emoji-top-panel-outer")).getText();
 
         if(likedUsers.contains("You")){
             Assert.assertTrue(likedUsers.contains("You"),"Verify that you liked the first post");
         }else{
-            likeButton.click();
+            activityStreamPage.firstPostLikeButton.click();
             String likedUsers2 = driver.findElement(By.cssSelector(".feed-post-emoji-top-panel-outer")).getText();
             Assert.assertTrue(likedUsers2.contains("You"));
         }
         extentLogger.info("Verify that You liked the first post");
 
-        WebElement commentButton = driver.findElement(By.cssSelector(".feed-inform-comments"));
-        commentButton.click();
+        activityStreamPage.firstPostCommentButton.click();
         extentLogger.info("Click on first post's comment button");
 
         driver.switchTo().frame(0);
         extentLogger.info("Switch your frame to comment input box frame");
 
-        WebElement commentInputBox = driver.findElement(By.xpath("//body[@style='min-height: 84px;']"));
         String expectedComment="Have a good day";
-        commentInputBox.sendKeys(expectedComment);
+        activityStreamPage.firstPostCommentInputBox.sendKeys(expectedComment);
         extentLogger.info("Write your comment");
 
         driver.switchTo().defaultContent();
         extentLogger.info("Switch your frame to main html");
 
-        WebElement sendButton = driver.findElement(By.cssSelector(".ui-btn.ui-btn-sm.ui-btn-primary"));
-        wait.until(ExpectedConditions.elementToBeClickable(sendButton));
-        sendButton.click();
+        activityStreamPage.sendCommentButton.click();
 
         extentLogger.info("Click send comment button");
         BrowserUtils.waitFor(3);
@@ -81,14 +77,12 @@ public class UserStory10 extends TestBase {
         String actualComment =lastComment.getText();
         Assert.assertEquals(actualComment,expectedComment,"Verify your comment");
 
-
-        WebElement unfollowFirstPost =driver.findElement(By.cssSelector(".feed-inform-follow"));
-        if(unfollowFirstPost.getText().equals("Unfollow")){
-            unfollowFirstPost.click();
-            Assert.assertEquals(unfollowFirstPost.getText(),"Follow");
+        if(activityStreamPage.firstPostUnfollowButton.getText().equals("Unfollow")){
+            activityStreamPage.firstPostUnfollowButton.click();
+            Assert.assertEquals(activityStreamPage.firstPostUnfollowButton.getText(),"Follow");
         }else {
-            unfollowFirstPost.click();
-            Assert.assertTrue(unfollowFirstPost.getText().equals("Unfollow"));
+            activityStreamPage.firstPostUnfollowButton.click();
+            Assert.assertTrue(activityStreamPage.firstPostUnfollowButton.getText().equals("Unfollow"));
         }
         extentLogger.info("Click on unfollow button of first post's");
         extentLogger.pass("US10 AC1:PASS");
@@ -158,7 +152,7 @@ public class UserStory10 extends TestBase {
         }
 
          */
-        extentLogger.info("Verify that office photo post is favorited");
+        extentLogger.info("Verify that first post is favorited");
         extentLogger.pass("PASS");
 
     }

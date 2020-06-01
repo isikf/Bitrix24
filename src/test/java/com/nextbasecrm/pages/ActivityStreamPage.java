@@ -73,6 +73,20 @@ public class ActivityStreamPage extends BasePage{
     @FindBy(css = ".bx-finder-box-tab.bx-lm-tab-department")
     public WebElement employeeAndDepartment;
 
+    @FindBy(css = ".bx-ilike-text")
+    public WebElement firstPostLikeButton;
+
+    @FindBy(css = ".feed-inform-comments")
+    public WebElement firstPostCommentButton;
+    @FindBy(css = ".feed-inform-follow")
+    public WebElement firstPostUnfollowButton;
+
+    @FindBy(xpath = "//body[@style='min-height: 84px;']")
+    public WebElement firstPostCommentInputBox;
+
+    @FindBy(css = ".ui-btn.ui-btn-sm.ui-btn-primary")
+    public WebElement sendCommentButton;
+
     public void navigateToAnnouncement(){
         moreButton.click();
         announcementButton.click();
