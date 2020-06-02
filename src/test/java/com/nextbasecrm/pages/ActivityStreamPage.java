@@ -63,7 +63,7 @@ public class ActivityStreamPage extends BasePage{
     public WebElement favoriteButton;
 
     @FindBy(xpath = "//div[@id='feed-add-post-form-tab']//span[.='Poll']")
-    public WebElement PollButton;
+    public WebElement pollButton;
 
     @FindBy(id = "feed-add-post-destination-container")
     public WebElement addMoreButton;
