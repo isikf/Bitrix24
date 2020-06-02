@@ -18,10 +18,7 @@ import java.util.List;
 public class UserStory4 extends TestBase {
     LoginPage loginPage = new LoginPage();
     ActivityStreamPage activityStreamPage = new ActivityStreamPage();
-
-    @FindBy(className = "bxhtmled-quote")
-    public WebElement quoteBlock;
-
+    
     @Ignore
     @Test
     public void AC1() {
