@@ -4,6 +4,7 @@ import com.nextbasecrm.utilities.BrowserUtils;
 import com.nextbasecrm.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -12,6 +13,7 @@ public abstract class BasePage {
     public BasePage(){
         PageFactory.initElements(Driver.get(),this);
     }
+    Actions actions = new Actions(Driver.get());
 
 
     @FindBy(id = "logo_24_a")
@@ -135,6 +137,36 @@ public abstract class BasePage {
         return newStr;
     }
 
+    /**
+     * This method will getting under the Active Stream main module all tab
+     * If we write 'Message' it will go to the Message fields..
+     * @adam
+     * @param module
+     */
+
+    public void navigateAllUnderModule(String module){
+        try{
+       actions.click(Driver.get().findElement(By.xpath("//span/span[.='"+module+"']")));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * This method will be click under the 'More' module all fields.
+     * It will navigate to us under 'More' module File,Appreciation,Announcement,Workflow
+     * @adam
+     * @param moreField
+     */
+
+    public void navigateToMoreModule(String moreField){
+        try{
+        actions.click(Driver.get().findElement(By.id("feed-add-post-form-link-text")));
+        actions.moveToElement(Driver.get().findElement(By.xpath("//span/span[.='"+moreField+"']"))).click().perform();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 
 
 }
