@@ -14,13 +14,17 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 public class UserStory4 extends TestBase {
-    @Ignore
+    LoginPage loginPage = new LoginPage();
+    ActivityStreamPage activityStreamPage =new ActivityStreamPage();
+
     @Test
     public void AC1(){
-        extentLogger=report.createTest("US 4 ac1-2 test");
+        extentLogger=report.createTest("US 4 AC1 test");
 
         new LoginPage().loginAsHelpDesk();
         extentLogger.info("Login as a help desk");
+
+        ActivityStreamPage activityStreamPage =new ActivityStreamPage();
 
         WebElement PollButton = driver.findElement(By.xpath("//div[@id='feed-add-post-form-tab']//span[.='Poll']"));
         PollButton.click();
@@ -31,11 +35,14 @@ public class UserStory4 extends TestBase {
         extentLogger.info("Click on upload file icon");
 
         String path = System.getProperty("user.dir")+"/"+"src/test/resources/Istanbul.jpg";
+        activityStreamPage.uploadFilesAndImagesPoll.sendKeys(path);
+        extentLogger.info("Upload imaggs ");
 
-        WebElement uploadFilesAndImages = driver.findElement(By.xpath("((//table/tbody)[7]//td)[1]"));
-        //WebElement uploadFilesAndImages =driver.findElement(By.cssSelector(".wd-fa-add-file-light-title-text"));
-        //wait.until(ExpectedConditions.elementToBeClickable(uploadFilesAndImages));
-        uploadFilesAndImages.click();
+        WebElement sendUploadButton =driver.findElement(By.id("blog-submit-button-save"));
+        sendUploadButton.click();
+        BrowserUtils.waitFor(5);
+
+
 
     }
 
@@ -46,7 +53,7 @@ public class UserStory4 extends TestBase {
         new LoginPage().loginAsHelpDesk();
         extentLogger.info("Login as a help desk");
 
-        ActivityStreamPage activityStreamPage =new ActivityStreamPage();
+
         activityStreamPage.PollButton.click();
         extentLogger.info("Click on poll button");
 
@@ -57,6 +64,7 @@ public class UserStory4 extends TestBase {
         extentLogger.info("Click on recent option");
 
         WebElement recentEmployee = driver.findElement(By.xpath("(//div[@class='bx-finder-box-item-t7-name'])[1]"));
+        BrowserUtils.waitFor(5);
         recentEmployee.click();
 
         activityStreamPage.employeeAndDepartment.click();
@@ -71,4 +79,28 @@ public class UserStory4 extends TestBase {
         Assert.assertEquals(listOfEmployees.get(number-1).getText(),expectedEmployeeName);
 
     }
+    @Test
+    public void AC3 () {
+        extentLogger=report.createTest("US 4 AC3 test");
+
+        loginPage.loginAsHelpDesk();
+        extentLogger.info("Login as a help desk");
+
+        activityStreamPage.PollButton.click();
+        extentLogger.info("Click on poll button");
+
+        activityStreamPage.addLink("Cybertek Mainpage", "www.cybertekschool.com");
+        extentLogger.info("Add Cybertek mainpage text and link");
+
+        activityStreamPage.sendTextButton.click();
+        extentLogger.info("Click send button");
+
+        activityStreamPage.searchAndFilterButton.click();
+        extentLogger.info("Click on filter and search button");
+
+        activityStreamPage.myActivityButtonInFilterAndSearchInput.click();
+        extentLogger.info("Click on my activity button in filter and search button");
+
+    }
+
 }

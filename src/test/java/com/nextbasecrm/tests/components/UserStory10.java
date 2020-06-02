@@ -117,7 +117,7 @@ public class UserStory10 extends TestBase {
     @Test(dataProvider = "testData")
     public void AC4(String username,String password){
 
-        extentLogger=report.createTest("User Story 10 AC:1");
+        extentLogger=report.createTest("User Story 10 AC:4");
         new LoginPage().login(username,password);
         extentLogger.info("login as a marketing user");
 
@@ -143,6 +143,7 @@ public class UserStory10 extends TestBase {
         extentLogger.info("Find the favorited post");
 
         Assert.assertTrue(favoritedPost.isDisplayed());
+        extentLogger.pass("PASS");
         /*if(!favoritedPost.isDisplayed()){
             starIcon.click();
             activityStreamPage.searchAndFilterButton.click();
@@ -152,8 +153,8 @@ public class UserStory10 extends TestBase {
         }
 
          */
-        extentLogger.info("Verify that first post is favorited");
-        extentLogger.pass("PASS");
+
+
 
     }
 

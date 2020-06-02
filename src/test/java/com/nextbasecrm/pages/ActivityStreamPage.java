@@ -133,6 +133,9 @@ public class ActivityStreamPage extends BasePage{
     @FindBy(xpath = "//*[@class='main-ui-filter-sidebar-item'][5]")
     public WebElement workflowsButtonInFilterAndSearchInput;
 
+    @FindBy(xpath = "//input[@name='bxu_files[]']")
+    public WebElement uploadFilesAndImagesPoll;
+
 
     public void navigateToAnnouncement(){
         moreButton.click();
