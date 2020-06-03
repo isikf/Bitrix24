@@ -134,6 +134,15 @@ public class ActivityStreamPage extends BasePage{
     @FindBy(xpath = "//*[@class='main-ui-filter-sidebar-item'][5]")
     public WebElement workflowsButtonInFilterAndSearchInput;
 
+    @FindBy(xpath = "//span[@class = 'feed-add-post-form-but-cnt feed-add-videomessage']")
+    public WebElement recordVideoButton;
+
+    @FindBy(xpath = "//span[@class = 'popup-window-button popup-window-button-blue']")
+    public WebElement allowDeviceAccessButton;
+
+    @FindBy(id = "feed-add-post-form-tab-message")
+    public WebElement messageButton;
+
 
     public void navigateToAnnouncement(){
         moreButton.click();
