@@ -1,6 +1,7 @@
 package com.nextbasecrm.tests.components;
 
 import com.nextbasecrm.pages.ActivityStreamPage;
+
 import com.nextbasecrm.pages.BasePage;
 import com.nextbasecrm.pages.LoginPage;
 import com.nextbasecrm.tests.TestBase;
@@ -249,6 +250,7 @@ public class UserStory1  extends TestBase {
 //        Assert.assertFalse(activityStreamPage.errorMessage.isDisplayed());
 
     }
+
 
 }
 
