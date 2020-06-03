@@ -6,6 +6,8 @@ import com.nextbasecrm.tests.TestBase;
 import com.nextbasecrm.utilities.Driver;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 public class UserStory7 extends TestBase {
@@ -21,7 +23,7 @@ public class UserStory7 extends TestBase {
     }
 
     @Test
-    public void test2(){
+    public void test3(){
         extentLogger = report.createTest("Announcement Link Verification");
         new LoginPage().loginAsHelpDesk();
         extentLogger.info("Login As Help Desk");
@@ -31,11 +33,9 @@ public class UserStory7 extends TestBase {
         Driver.get().switchTo().frame(0);
         Driver.get().findElement(By.xpath("//body[@contenteditable='true']")).clear();
         Driver.get().switchTo().parentFrame();
-        activityStreamPage.linkIcon.click();
-        extentLogger.info("Click link icon to create link");
         String text = "amazon";
         String url = "https://www.amazon.co.uk/";
-        activityStreamPage.addLinkAfterClick(text,url);
+        activityStreamPage.addLink(text,url);
         extentLogger.info("Add Link");
         Driver.get().switchTo().frame(0);
         if(!text.isEmpty()) {
@@ -45,6 +45,34 @@ public class UserStory7 extends TestBase {
         }
         extentLogger.info("Verify link is displayed");
         extentLogger.pass("PASS");
+    }
+
+    @DataProvider
+    public Object[] testData(){
+        String[] data ={
+                "https://www.youtube.com/watch?v=WzuJANOPLyQ",
+                "https://www.youtube.com/watch?v=eIrMbAQSU34",
+                "https://www.youtube.com/watch?v=5MgBikgcWnY",
+                "https://www.youtube.com/watch?v=5MgB",
+                "https://www.google.com"
+        };
+        return data;
+    }
+    @Ignore
+    @Test(dataProvider = "testData")
+    public void test4(String link){
+        extentLogger = report.createTest("Announcement Video Insert Verification");
+        new LoginPage().loginAsHelpDesk();
+        extentLogger.info("Login As Help Desk");
+        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
+        activityStreamPage.navigateToAnnouncement();
+        extentLogger.info("Go to announcement");
+        Driver.get().switchTo().frame(0);
+        activityStreamPage.textInput.clear();
+        Driver.get().switchTo().parentFrame();
+     //   activityStreamPage.insertVideo(link);
+        extentLogger.info("Click video icon to insert video");
+
     }
 
     @Test
