@@ -50,8 +50,9 @@ public class UserStory3 extends TestBase {
         activityStream.navigateToTab("Event");
 
 
+        //Ac 1 varification from mardan
 
-
+        //Ac 2 verification dome by talha
 
     }
 }

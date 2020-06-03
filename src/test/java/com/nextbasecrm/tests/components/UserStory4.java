@@ -17,6 +17,13 @@ import java.util.List;
 
 public class UserStory4 extends TestBase {
     LoginPage loginPage = new LoginPage();
+
+    ActivityStreamPage activityStreamPage =new ActivityStreamPage();
+
+    @Test
+    public void AC1(){
+        extentLogger=report.createTest("US 4 AC1 test");
+
     ActivityStreamPage activityStreamPage = new ActivityStreamPage();
     
     @Ignore
@@ -24,22 +31,37 @@ public class UserStory4 extends TestBase {
     public void AC1() {
         extentLogger = report.createTest("US 4 ac1-2 test");
 
+
         new LoginPage().loginAsHelpDesk();
         extentLogger.info("Login as a help desk");
 
+
+        ActivityStreamPage activityStreamPage =new ActivityStreamPage();
+
+        WebElement PollButton = driver.findElement(By.xpath("//div[@id='feed-add-post-form-tab']//span[.='Poll']"));
+        PollButton.click();
+
         activityStreamPage.pollButton.click();
+
         extentLogger.info("Click on poll button");
 
         WebElement uploadFileIcon = driver.findElement(By.id("bx-b-uploadfile-blogPostForm"));
         uploadFileIcon.click();
         extentLogger.info("Click on upload file icon");
 
+
+        String path = System.getProperty("user.dir")+"/"+"src/test/resources/Istanbul.jpg";
+        activityStreamPage.uploadFilesAndImagesPoll.sendKeys(path);
+        extentLogger.info("Upload imaggs ");
+
+        WebElement sendUploadButton =driver.findElement(By.id("blog-submit-button-save"));
+        sendUploadButton.click();
+        BrowserUtils.waitFor(5);
+
+
         String path = System.getProperty("user.dir") + "/" + "src/test/resources/Istanbul.jpg";
 
-        WebElement uploadFilesAndImages = driver.findElement(By.xpath("((//table/tbody)[7]//td)[1]"));
-        //WebElement uploadFilesAndImages =driver.findElement(By.cssSelector(".wd-fa-add-file-light-title-text"));
-        //wait.until(ExpectedConditions.elementToBeClickable(uploadFilesAndImages));
-        uploadFilesAndImages.click();
+
 
     }
 
@@ -50,7 +72,12 @@ public class UserStory4 extends TestBase {
         new LoginPage().loginAsHelpDesk();
         extentLogger.info("Login as a help desk");
 
+
+
+        activityStreamPage.PollButton.click();
+
         activityStreamPage.pollButton.click();
+
         extentLogger.info("Click on poll button");
 
         activityStreamPage.addMoreButton.click();
@@ -60,6 +87,7 @@ public class UserStory4 extends TestBase {
         extentLogger.info("Click on recent option");
 
         WebElement recentEmployee = driver.findElement(By.xpath("(//div[@class='bx-finder-box-item-t7-name'])[1]"));
+        BrowserUtils.waitFor(5);
         recentEmployee.click();
 
         activityStreamPage.employeeAndDepartment.click();
@@ -79,10 +107,15 @@ public class UserStory4 extends TestBase {
     public void AC3() {
         extentLogger = report.createTest("US 4 AC3 test");
 
+
         loginPage.loginAsHelpDesk();
         extentLogger.info("Login as a help desk");
 
+
+        activityStreamPage.PollButton.click();
+
         activityStreamPage.pollButton.click();
+
         extentLogger.info("Click on poll button");
 
         activityStreamPage.addLink("Cybertek Mainpage", "www.cybertekschool.com");
@@ -96,6 +129,11 @@ public class UserStory4 extends TestBase {
 
         activityStreamPage.myActivityButtonInFilterAndSearchInput.click();
         extentLogger.info("Click on my activity button in filter and search button");
+
+
+    }
+
+
     }
 
     @Test
@@ -116,4 +154,5 @@ public class UserStory4 extends TestBase {
         extentLogger.info("Verify Block Quote Is Displayed");
         extentLogger.pass("PASS");
     }
+
 }
