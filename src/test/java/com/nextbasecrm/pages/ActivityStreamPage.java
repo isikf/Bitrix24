@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import java.util.*;
 
@@ -297,8 +298,19 @@ public class ActivityStreamPage extends BasePage{
     @FindBy(xpath = "//*[@class='main-ui-filter-sidebar-item'][5]")
     public WebElement workflowsButtonInFilterAndSearchInput;
 
+
+    public void insertVideo(String link){
+        videoIcon.click();
+        videoSourceInput.sendKeys(link);
+        BrowserUtils.waitForVisibility(videoTitleBox,3);
+        WebElement saveButton = Driver.get().findElement(By.id("undefined"));
+        BrowserUtils.waitForVisibility(saveButton,5);
+        saveButton.click();
+    }
+
     @FindBy(xpath = "//input[@name='bxu_files[]']")
     public WebElement uploadFilesAndImagesPoll;
+
 
 
 
@@ -311,6 +323,9 @@ public class ActivityStreamPage extends BasePage{
         linkIcon.click();
         linkText.sendKeys(text);
         linkUrl.sendKeys(url);
+        if(text.isEmpty() && url.isEmpty()){
+            return;
+        }
         Driver.get().findElement(By.id("undefined")).click();
     }
 
