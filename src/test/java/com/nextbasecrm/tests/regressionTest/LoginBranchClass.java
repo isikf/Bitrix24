@@ -7,6 +7,10 @@ public class LoginBranchClass {
 
         //created by local-1
         //created by local-2
+        //stage 3 updates made
+        //some more lines added
+        //you will never walk alone
+
 
     }
 }
