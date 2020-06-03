@@ -1,15 +1,13 @@
-package com.nextbasecrm.pages;
+package com.nextbasecrm.pages.activityStream;
 
 
-import com.nextbasecrm.utilities.BrowserUtils;
-import com.nextbasecrm.utilities.Driver;
-import org.openqa.selenium.By;
+import com.nextbasecrm.pages.BasePage;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class ActivityStreamEvent extends BasePage {
-
+    //mardan abi and talha abi
+    //specific methods and web elements
 
     @FindBy( id = "feed-add-post-form-tab-calendar")
     public WebElement eventTab;

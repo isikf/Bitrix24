@@ -1,17 +1,14 @@
 package com.nextbasecrm.tests.components;
 
-import com.nextbasecrm.pages.ActivityStreamPage;
+import com.nextbasecrm.pages.activityStream.ActivityStreamPage;
 import com.nextbasecrm.pages.LoginPage;
 import com.nextbasecrm.tests.TestBase;
 import com.nextbasecrm.utilities.BrowserUtils;
 import com.nextbasecrm.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 public class UserStory9 extends TestBase {
 

@@ -1,8 +1,8 @@
 package com.nextbasecrm.tests.components;
 
 import com.nextbasecrm.pages.LoginPage;
-import com.nextbasecrm.pages.ActivityStreamPage;
-import com.nextbasecrm.pages.ActivityStreamEvent;
+import com.nextbasecrm.pages.activityStream.ActivityStreamPage;
+import com.nextbasecrm.pages.activityStream.ActivityStreamEvent;
 import com.nextbasecrm.tests.TestBase;
 import com.nextbasecrm.utilities.ConfigurationReader;
 import org.testng.annotations.DataProvider;

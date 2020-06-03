@@ -1,16 +1,16 @@
-package com.nextbasecrm.pages;
+package com.nextbasecrm.pages.activityStream;
 
+import com.nextbasecrm.pages.BasePage;
 import com.nextbasecrm.utilities.BrowserUtils;
 import com.nextbasecrm.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 import java.util.*;
 
-public class ActivityStreamPage extends BasePage{
+public class ActivityStreamPage extends BasePage {
 
     @FindBy(id = "feed-add-post-form-link-text")
     public WebElement moreButton;
@@ -216,7 +216,6 @@ public class ActivityStreamPage extends BasePage{
     @FindBy(id = "blog-submit-button-save")
     public WebElement sendTextButton;
 
-
     @FindBy(id="pagetitle")
     public WebElement activityStreamPageTitle;
 
@@ -243,6 +242,7 @@ public class ActivityStreamPage extends BasePage{
 
     @FindBy(css = ".feed-inform-comments")
     public WebElement firstPostCommentButton;
+
     @FindBy(css = ".feed-inform-follow")
     public WebElement firstPostUnfollowButton;
 
@@ -257,7 +257,6 @@ public class ActivityStreamPage extends BasePage{
 
     @FindBy(id = "LIVEFEED_search_container")
     public WebElement filterAndSearchInputContainer;
-
 
     @FindBy(className = "main-ui-filter-add-item")
     public WebElement saveFilterButtonAfterFilterAndSearch;
@@ -298,15 +297,8 @@ public class ActivityStreamPage extends BasePage{
     @FindBy(xpath = "//*[@class='main-ui-filter-sidebar-item'][5]")
     public WebElement workflowsButtonInFilterAndSearchInput;
 
-    @FindBy(xpath = "//span[@class = 'feed-add-post-form-but-cnt feed-add-videomessage']")
-    public WebElement recordVideoButton;
-
-    @FindBy(xpath = "//span[@class = 'popup-window-button popup-window-button-blue']")
-    public WebElement allowDeviceAccessButton;
-
-    @FindBy(id = "feed-add-post-form-tab-message")
-    public WebElement messageButton;
-
+    @FindBy(xpath = "//input[@name='bxu_files[]']")
+    public WebElement uploadFilesAndImagesPoll;
 
     public void insertVideo(String link){
         videoIcon.click();
@@ -315,17 +307,6 @@ public class ActivityStreamPage extends BasePage{
         WebElement saveButton = Driver.get().findElement(By.id("undefined"));
         BrowserUtils.waitForVisibility(saveButton,5);
         saveButton.click();
-    }
-
-    @FindBy(xpath = "//input[@name='bxu_files[]']")
-    public WebElement uploadFilesAndImagesPoll;
-
-
-
-
-    public void navigateToAnnouncement(){
-        moreButton.click();
-        announcementButton.click();
     }
 
     public void addLink(String text, String url){

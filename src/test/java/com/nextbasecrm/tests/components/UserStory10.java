@@ -1,6 +1,6 @@
 package com.nextbasecrm.tests.components;
 
-import com.nextbasecrm.pages.ActivityStreamPage;
+import com.nextbasecrm.pages.activityStream.ActivityStreamPage;
 import com.nextbasecrm.pages.LoginPage;
 import com.nextbasecrm.tests.TestBase;
 import com.nextbasecrm.utilities.BrowserUtils;
@@ -8,13 +8,11 @@ import com.nextbasecrm.utilities.ConfigurationReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class UserStory10 extends TestBase {
 
