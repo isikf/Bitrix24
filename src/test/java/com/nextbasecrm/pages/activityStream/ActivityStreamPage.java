@@ -332,21 +332,6 @@ public class ActivityStreamPage extends BasePage {
         // navigateToModule("Activity Stream");
         tabElement.click();
     }
-    /**
-     * This method will getting under the Active Stream main module all tab
-     * If we write 'Message' it will go to the Message fields..
-     * @adam
-     * @param module
-     */
-
-    public void navigateAllUnderModule(String module){
-        Actions actions = new Actions(Driver.get());
-        try{
-            actions.click(Driver.get().findElement(By.xpath("//span/span[.='"+module+"']")));
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
 
     /**
      * This method will be click under the 'More' module all fields.
@@ -356,10 +341,9 @@ public class ActivityStreamPage extends BasePage {
      */
 
     public void navigateToMoreModule(String moreField){
-        Actions actions = new Actions(Driver.get());
         try{
-            actions.click(Driver.get().findElement(By.id("feed-add-post-form-link-text")));
-            actions.moveToElement(Driver.get().findElement(By.xpath("//span/span[.='"+moreField+"']"))).click().perform();
+            Driver.get().findElement(By.id("feed-add-post-form-link-text")).click();
+            Driver.get().findElement(By.xpath("//div[@class='menu-popup-items']/span[.='"+moreField+"']")).click();
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
