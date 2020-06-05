@@ -1,5 +1,6 @@
 package com.nextbasecrm.tests.components;
 
+import com.nextbasecrm.pages.activityStream.ActivityStreamMessage;
 import com.nextbasecrm.pages.activityStream.ActivityStreamPage;
 
 import com.nextbasecrm.pages.LoginPage;
@@ -11,31 +12,32 @@ import org.testng.annotations.Test;
 
 public class UserStory1  extends TestBase {
 
-    @Test
-    public void AC1() throws InterruptedException {
+    LoginPage loginPage = new LoginPage();
+    ActivityStreamMessage activityStreamMessage = new ActivityStreamMessage();
 
-        LoginPage loginPage = new LoginPage();
+    @Test
+    public void AC1(){
+
         loginPage.loginAsHelpDesk();
 
-        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
-        activityStreamPage.messageButton.click();
+        activityStreamMessage.messageButton.click();
 
-        driver.switchTo().frame(activityStreamPage.textEditorFrame);
-        driver.findElement(By.xpath("//body[@contenteditable='true']")).sendKeys("Hello World");
+        driver.switchTo().frame(activityStreamMessage.textEditorFrame);
+        activityStreamMessage.textInput.sendKeys("Hello World");
         driver.switchTo().defaultContent();
 
-        activityStreamPage.uploadFilesButton.click();
+        activityStreamMessage.uploadFilesButton.click();
 
 
         String projectPath = System.getProperty("user.dir");
         String relativePath = "src/test/resources/testfile.txt";
         String filePath = projectPath + "/" + relativePath;
 
-        activityStreamPage.uploadFilesAndImagesBtn.sendKeys(filePath);
+        activityStreamMessage.uploadFilesAndImagesBtn.sendKeys(filePath);
 
-        Assert.assertTrue(activityStreamPage.uploadedFileMessage.isDisplayed());
+        Assert.assertTrue(activityStreamMessage.uploadedFileMessage.isDisplayed());
 
-        Thread.sleep(2000);
+        BrowserUtils.waitFor(2);
 
 
         //DOWNLOAD FROM EXTERNAL DRIVE ERROR
@@ -44,201 +46,170 @@ public class UserStory1  extends TestBase {
 
 
         //SELECT DOCUMENT FROM BITRIX24
-        activityStreamPage.selectDocFromBitrix24.click();
-        activityStreamPage.myDriveButton.click();
-        activityStreamPage.selectSalesAndMarketing.click();
-        activityStreamPage.selectMarketingAndAdvertising.click();
-        activityStreamPage.selectLogoGif.click();
-        activityStreamPage.selectDocumentButton.click();
-        Assert.assertEquals(activityStreamPage.attachedFilesNotification.getText(),"Attached files and images");
+        activityStreamMessage.selectDocFromBitrix24.click();
+        activityStreamMessage.myDriveButton.click();
+        activityStreamMessage.selectSalesAndMarketing.click();
+        activityStreamMessage.selectMarketingAndAdvertising.click();
+        activityStreamMessage.selectLogoGif.click();
+        activityStreamMessage.selectDocumentButton.click();
+        Assert.assertEquals(activityStreamMessage.attachedFilesNotification.getText(),"Attached files and images");
 
-        Thread.sleep(2000);
-
-
-        //CREATE USING OFFICE365 How I should
-        activityStreamPage.createUsingOffice365Button.click();
-        activityStreamPage.desktopApplicationsButton.click();
-        activityStreamPage.downloadButton.click();
+        BrowserUtils.waitFor(2);
 
 
-        Thread.sleep(5000);
+        //CREATE USING OFFICE365
+        activityStreamMessage.createUsingOffice365Button.click();
+        activityStreamMessage.desktopApplicationsButton.click();
+
+        Assert.assertTrue(activityStreamMessage.downloadButton.isEnabled());
+
+        //activityStreamPage.downloadButton.click();
+
+
+
 
 
     }
 
     @Test
-    public void AC2() throws InterruptedException {
+    public void AC2() {
 
-        LoginPage loginPage = new LoginPage();
         loginPage.loginAsHelpDesk();
 
-        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
-        activityStreamPage.messageButton.click();
-
-        driver.switchTo().frame(activityStreamPage.textEditorFrame);
-        driver.findElement(By.xpath("//body[@contenteditable='true']")).sendKeys("Hello World");
-        driver.switchTo().defaultContent();
-
-        activityStreamPage.allEmployeesBtn.click();
-        activityStreamPage.addByEmployeesAndDepartments.click();
-        activityStreamPage.selectAnEmailFromEmpAndDep.click();
-
-        activityStreamPage.addByEmailUsers.click();
-        activityStreamPage.textBoxEmailUsers.sendKeys("hr6@cybertekschool.com");
-        activityStreamPage.selectAnEmailFromEmailUsers.click();
-
-        //activityStreamPage.popupWindowClose.click();
+        activityStreamMessage.messageButton.click();
 
 
+        activityStreamMessage.allEmployeesBtn.click();
+        activityStreamMessage.addByEmployeesAndDepartments.click();
+        activityStreamMessage.selectAnEmailFromEmpAndDep.click();
+
+        Assert.assertTrue(activityStreamMessage.checkSelectedEmployees2.isDisplayed());
 
 
+        activityStreamMessage.addByEmailUsers.click();
+        activityStreamMessage.textBoxEmailUsers.sendKeys("hr6@cybertekschool.com");
+        activityStreamMessage.selectAnEmailFromEmailUsers.click();
 
-        //activityStreamPage.messageSendButton.click();
-
-        Thread.sleep(3000);
-
-    }
-
-    @Test
-    public void AC3()throws InterruptedException {
-
-        LoginPage loginPage = new LoginPage();
-        loginPage.loginAsHelpDesk();
-
-        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
-        activityStreamPage.messageButton.click();
-
-
-        activityStreamPage.linkButton.click();
-        activityStreamPage.linkCancelButton.click();
-
-        activityStreamPage.linkButton.click();
-
-        activityStreamPage.linkTextBox.sendKeys("Test URL");
-        activityStreamPage.wait(5000);
-        activityStreamPage.linkURLBox.sendKeys("https://login.nextbasecrm.com/stream/");
-//        activityStreamPage.linkSaveButton.click();
-
-
-        activityStreamPage.wait(3000);
+        Assert.assertTrue(activityStreamMessage.checkSelectedEmployees3.isDisplayed());
 
 
     }
 
     @Test
-    public void AC4()throws InterruptedException{
+    public void AC3() {
 
-        LoginPage loginPage = new LoginPage();
         loginPage.loginAsHelpDesk();
 
-        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
-        activityStreamPage.messageButton.click();
+        activityStreamMessage.messageButton.click();
 
-//        activityStreamPage.insertVideo.click();
-//        activityStreamPage.videoLinkBox.sendKeys("https://www.youtube.com/watch?v=K7z3590-Mt0");
-//        Thread.sleep(5000);
-//        activityStreamPage.linkCancelButton.click();
+        activityStreamMessage.linkButton.click();
+        activityStreamMessage.linkCancelButton.click();
+
+        activityStreamMessage.linkButton.click();
+
+        //activityStreamPage.linkTextBox.sendKeys("Title");
+
+        String addedUrl = "https://login.nextbasecrm.com/stream/";
+
+        BrowserUtils.waitFor(2);
+        activityStreamMessage.linkURLBox.sendKeys(addedUrl);
+        BrowserUtils.waitFor(4);
+
+        //Assert.assertEquals(activityStreamPage.linkURLBox.getText(),"https://login.nextbasecrm.com/stream/");
 
 
-        activityStreamPage.insertVideo.click();
-        activityStreamPage.videoLinkBox.sendKeys("https://youtu.be/BIab2VEg9Tw");
-        BrowserUtils.waitFor(10);
-        activityStreamPage.saveButtonForVideo.click();
 
-        driver.switchTo().frame(activityStreamPage.textEditorFrame);
-        String actualText = driver.findElement(By.xpath("//body[@ contenteditable ='true']")).getText();
-        String expectedText = "";
 
-        Assert.assertNotEquals(actualText,expectedText);
 
-        //Assert.assertTrue(activityStreamPage.videoAddedSuccessfully.isDisplayed());
+    }
 
+    @Test
+    public void AC4(){
+
+        loginPage.loginAsHelpDesk();
+
+        activityStreamMessage.messageButton.click();
+
+        activityStreamMessage.insertVideo.click();
+        activityStreamMessage.videoLinkBox.sendKeys("https://youtu.be/BIab2VEg9Tw");
+
+        Assert.assertTrue(activityStreamMessage.errorMessageforURL.isDisplayed());
 
 
     }
 
     @Test
     public void AC5(){
-        LoginPage loginPage = new LoginPage();
+
         loginPage.loginAsHelpDesk();
 
-        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
-        activityStreamPage.messageButton.click();
+        activityStreamMessage.messageButton.click();
 
-//        driver.switchTo().frame(activityStreamPage.textEditorFrame);
-//        driver.findElement(By.xpath("//body[@contenteditable='true']")).sendKeys("Hello World");
-//        driver.switchTo().defaultContent();
+        activityStreamMessage.quoteTextButton.click();
 
-        activityStreamPage.quoteTextButton.click();
+        driver.switchTo().frame(activityStreamMessage.textEditorFrame);
+        activityStreamMessage.quoteTextBox.sendKeys("Quote Text Box!");
+        Assert.assertTrue(activityStreamMessage.quoteTextBox.isDisplayed());
 
-        driver.switchTo().frame(activityStreamPage.textEditorFrame);
-        activityStreamPage.quoteTextBox.sendKeys("Quote Text Box!");
-        Assert.assertTrue(activityStreamPage.quoteTextBox.isDisplayed());
-        driver.switchTo().defaultContent();
+        Assert.assertTrue(activityStreamMessage.quoteTextBox.isDisplayed());
+
 
     }
 
     @Test
     public void AC6(){
 
-        LoginPage loginPage = new LoginPage();
+
         loginPage.loginAsHelpDesk();
 
-        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
-        activityStreamPage.messageButton.click();
+        activityStreamMessage.messageButton.click();
 
-        activityStreamPage.addMentionButton.click();
+        activityStreamMessage.addMentionButton.click();
 
-        activityStreamPage.employeesAndDepartmentsForAddMention.click();
-        activityStreamPage.selectEmployeesAndDepForAddMention.click();
-        Assert.assertTrue(activityStreamPage.checkSelectedEmployees.isDisplayed());
+        activityStreamMessage.employeesAndDepartmentsForAddMention.click();
+        activityStreamMessage.selectEmployeesAndDepForAddMention.click();
+        Assert.assertTrue(activityStreamMessage.checkSelectedEmployees.isDisplayed());
 
     }
 
     @Test
     public void AC7() {
 
-        LoginPage loginPage = new LoginPage();
         loginPage.loginAsHelpDesk();
 
-        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
-        activityStreamPage.messageButton.click();
+        activityStreamMessage.messageButton.click();
 
-        activityStreamPage.visualEditorButton.click();
-
-        Assert.assertTrue(activityStreamPage.visualEditorTab.isDisplayed());
+        activityStreamMessage.visualEditorButton.click();
+        Assert.assertTrue(activityStreamMessage.visualEditorTab.isDisplayed());
     }
 
     @Test
     public void AC8() {
 
-        LoginPage loginPage = new LoginPage();
         loginPage.loginAsHelpDesk();
 
-        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
-        activityStreamPage.messageButton.click();
+        activityStreamMessage.messageButton.click();
 
-        activityStreamPage.topicButton.click();
-        Assert.assertTrue(activityStreamPage.topicTitle.isDisplayed());
+        activityStreamMessage.topicButton.click();
+        Assert.assertTrue(activityStreamMessage.topicTitle.isDisplayed());
 
     }
 
     @Test
     public void AC9() throws InterruptedException {
 
-        LoginPage loginPage = new LoginPage();
+
         loginPage.loginAsHelpDesk();
 
-        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
-        activityStreamPage.messageButton.click();
+        activityStreamMessage.messageButton.click();
 
         Thread.sleep(3000);
-        activityStreamPage.recordVideoButton.click();
-        activityStreamPage.allowDeviceAccessButton.click();
+        activityStreamMessage.recordVideoButton.click();
+        activityStreamMessage.allowDeviceAccessButton.click();
 
         BrowserUtils.waitFor(5);
 
-        String actualRecordMessage = activityStreamPage.errorMessage.getText();
+        String actualRecordMessage = activityStreamMessage.errorMessage.getText();
         String expectedRecordMessage = "Succusfully Added";
         Assert.assertEquals(actualRecordMessage,expectedRecordMessage);
 
